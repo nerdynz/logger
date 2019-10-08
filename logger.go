@@ -17,9 +17,9 @@ func LogPath() (string, error) {
 		logPath = "./attachments/logs/"
 	}
 	time := time.Now()
-	fullpath := logPath + time.Format("JAN_2006") + "/"
-	if _, err := os.Stat(fullpath); os.IsNotExist(err) {
-		err := os.Mkdir(fullpath, 0666)
+	fullpath := logPath + time.Format("Jan_2006") + "/"
+	if _, fullErr := os.Stat(fullpath); os.IsNotExist(fullErr) {
+		err := os.MkdirAll(fullpath, os.ModePerm)
 		if err != nil {
 			return "", err
 		}
@@ -36,5 +36,5 @@ func Log(filekey string, msg string) {
 	}
 	defer f.Close()
 	log.SetOutput(f)
-	log.Println(time.Now().Format("Mon 02 Jan 2006 15:04:05") + ":" + msg)
+	log.Println(msg)
 }
