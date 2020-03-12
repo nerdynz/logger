@@ -3,6 +3,7 @@ package logger
 import (
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	helpers "github.com/nerdynz/helpers"
@@ -29,7 +30,7 @@ func LogPath() (string, error) {
 
 func Log(filekey string, msg string) {
 	logpath, _ := LogPath()
-	f, err := os.OpenFile(logpath+helpers.KebabCase(filekey), os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, err := os.OpenFile(logpath+strings.ToLower(helpers.KebabCase(filekey)), os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		// dont care logging shouldn't break anything
 		return
