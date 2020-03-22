@@ -18,7 +18,7 @@ func LogPath() (string, error) {
 		logPath = "./attachments/logs/"
 	}
 	time := time.Now()
-	fullpath := logPath + time.Format("Jan_2006") + "/"
+	fullpath := logPath + time.Format("012006") + "/"
 	if _, fullErr := os.Stat(fullpath); os.IsNotExist(fullErr) {
 		err := os.MkdirAll(fullpath, os.ModePerm)
 		if err != nil {
