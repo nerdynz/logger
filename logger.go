@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"time"
 
 	helpers "github.com/nerdynz/helpers"
 )
@@ -24,12 +23,12 @@ func LogPath() (string, error) {
 		logPath = logsFolder
 	}
 
-	time := time.Now()
+	// time := time.Now()
 	// fullpath := logPath + time.Format("012006") + "/"
-	if _, fullErr := os.Stat(fullpath); os.IsNotExist(fullErr) {
-		return nil, errors.New("Log folder is unavaliable: " + fullErr.Error())
+	if _, fullErr := os.Stat(logPath); os.IsNotExist(fullErr) {
+		return nil, errors.New("Log folder is unavailable: " + fullErr.Error())
 	}
-	return fullpath, nil
+	return logPath, nil
 }
 
 func Log(filekey string, msg string) {
