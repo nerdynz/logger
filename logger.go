@@ -26,7 +26,7 @@ func LogPath() (string, error) {
 	// time := time.Now()
 	// fullpath := logPath + time.Format("012006") + "/"
 	if _, fullErr := os.Stat(logPath); os.IsNotExist(fullErr) {
-		return nil, errors.New("Log folder is unavailable: " + fullErr.Error())
+		return "", errors.New("Log folder is unavailable: " + fullErr.Error())
 	}
 	return logPath, nil
 }
